@@ -1,0 +1,15 @@
+jupyter
+matplotlib
+numpy
+pandas
+scipy
+jupyterlab
+jupyterlab-spellchecker
+validators
+Unidecode
+scikit-learn
+seaborn
+statsmodels
+plotly
+flake8
+python-dotenv
