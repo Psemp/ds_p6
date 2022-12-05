@@ -7,6 +7,7 @@ data/*
 heavy/*
 private/*
 notebooks/Exemple_Tweets_Feature-extraction_Sentence+Embedding_V1.1.ipynb
+notebooks/nb_anx_1_cv_tfidf.ipynb
 tensorflow_addons-0.18.0-cp310-cp310-macosx_12_0_arm64.whl
 
 # Byte-compiled / optimized / DLL files
