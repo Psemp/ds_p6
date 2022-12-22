@@ -16,5 +16,5 @@ python-dotenv
 wordcloud
 spacy
 # tensorflow / tensorflow-macos # pick one and uncomment
-gensim
+# gensim
 transformers

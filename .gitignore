@@ -1,6 +1,10 @@
 # Mac stuff
 .DS_Store
 
+# Docker
+compose-dev.yaml
+.devcontainer
+
 # Heavy files / data files image files
 imgs/*
 data/*
