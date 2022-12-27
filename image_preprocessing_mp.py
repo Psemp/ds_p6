@@ -3,9 +3,7 @@ import glob
 import concurrent.futures
 import warnings
 
-from PIL import Image
-
-from scripts.utils import additionnal_cleaning, noise_and_blur
+from PIL import Image, ImageOps
 
 image_dir = "./data/Images"
 
@@ -26,7 +24,7 @@ def preprocessing(image_path):
     Nothing
     Saves the preprocessed image in the "./imgs/" (+ mode) directory.
     """
-    mode = "gs"
+    mode = "gs_he"
     outdir = f"./imgs/{mode}"
     image_name = os.path.basename(image_path)
     with warnings.catch_warnings():
@@ -34,6 +32,9 @@ def preprocessing(image_path):
         image = Image.open(image_path)
 
     width, height = image.size
+
+    image = ImageOps.autocontrast(image=image)
+    image = ImageOps.equalize(image=image)
     if width == height:
         pass
     elif width > height:
@@ -46,14 +47,15 @@ def preprocessing(image_path):
         image = new_image
 
     image = image.resize((128, 128), resample=Image.Resampling.BICUBIC)
-    image = additionnal_cleaning(product_image=image, mode=mode)
+    # image = additionnal_cleaning(product_image=image, mode=mode)
     if mode == "gs" or mode == "gs_he":
-        image = noise_and_blur(product_image=image)
+        # image = noise_and_blur(product_image=image)
         image = image.convert(mode="L")
     image.save(fp=f"{outdir}/{image_name}")
 
 
 workers = os.cpu_count()
+
 
 if __name__ == "__main__":
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
