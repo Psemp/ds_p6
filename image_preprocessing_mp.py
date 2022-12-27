@@ -19,7 +19,6 @@ def preprocessing(image_path):
     Args:
     - image_path: path to image for pillow to process
 
-    Applies histogram eq. first --> before a bunch of white pxs are filled.
     If the image is not already a square, creates a new image, fills it with black and pastes the
     original image centered. The resulting image is then resized to 128x128.
 
@@ -27,14 +26,12 @@ def preprocessing(image_path):
     Nothing
     Saves the preprocessed image in the "./imgs/" (+ mode) directory.
     """
-    mode = "gs_he"
+    mode = "gs"
     outdir = f"./imgs/{mode}"
     image_name = os.path.basename(image_path)
     with warnings.catch_warnings():
         warnings.simplefilter('ignore')
         image = Image.open(image_path)
-
-    image = additionnal_cleaning(product_image=image, mode=mode)
 
     width, height = image.size
     if width == height:
@@ -49,6 +46,7 @@ def preprocessing(image_path):
         image = new_image
 
     image = image.resize((128, 128), resample=Image.Resampling.BICUBIC)
+    image = additionnal_cleaning(product_image=image, mode=mode)
     if mode == "gs" or mode == "gs_he":
         image = noise_and_blur(product_image=image)
         image = image.convert(mode="L")
