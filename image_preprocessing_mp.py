@@ -3,7 +3,7 @@ import glob
 import concurrent.futures
 import warnings
 
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageFilter
 
 image_dir = "./data/Images"
 
@@ -13,12 +13,14 @@ image_paths = glob.glob(pathname=f"{image_dir}/*")
 def preprocessing(image_path):
     """
     Preprocesses the image at the given path by transforming it into a square image and resizing it to 128x128.
+    Applies a Gaussian filter to remove potential noise. Adjust the filter via radius parameter (line 55)
 
     Args:
     - image_path: path to image for pillow to process
 
     If the image is not already a square, creates a new image, fills it with black and pastes the
-    original image centered. The resulting image is then resized to 128x128.
+    original image centered. The resulting image is then resized to 128x128. Uses a Gaussian Filter to
+    improve image quality.
 
     Returns:
     Nothing
@@ -47,10 +49,12 @@ def preprocessing(image_path):
         image = new_image
 
     image = image.resize((128, 128), resample=Image.Resampling.BICUBIC)
-    # image = additionnal_cleaning(product_image=image, mode=mode)
     if mode == "gs" or mode == "gs_he":
-        # image = noise_and_blur(product_image=image)
         image = image.convert(mode="L")
+
+    gaussian_filter = ImageFilter.GaussianBlur(radius=0.35)
+    image = image.filter(filter=gaussian_filter)
+
     image.save(fp=f"{outdir}/{image_name}")
 
 
@@ -58,5 +62,8 @@ workers = os.cpu_count()
 
 
 if __name__ == "__main__":
+    print("Running ...")
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
         executor.map(preprocessing, image_paths)
+
+    print("... Done")
