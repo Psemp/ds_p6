@@ -63,6 +63,7 @@ workers = os.cpu_count()
 
 if __name__ == "__main__":
     print("Running ...")
+
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
         executor.map(preprocessing, image_paths)
 
