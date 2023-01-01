@@ -48,7 +48,7 @@ def preprocessing(image_path):
         new_image.paste(image, ((height - width) // 2, 0))
         image = new_image
 
-    image = image.resize((128, 128), resample=Image.Resampling.BICUBIC)
+    image = image.resize((224, 224), resample=Image.Resampling.BICUBIC)
     if mode == "gs" or mode == "gs_he":
         image = image.convert(mode="L")
 
