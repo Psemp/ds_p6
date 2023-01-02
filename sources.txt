@@ -1,0 +1,4 @@
+vgg16 : https://towardsdatascience.com/transfer-learning-with-vgg16-and-keras-50ea161580b4
+neural networks FIDLE CNRS : https://gricad-gitlab.univ-grenoble-alpes.fr/talks/fidle/-/wikis/home
+bert : https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3
+https://pyimagesearch.com/2017/03/20/imagenet-vggnet-resnet-inception-xception-keras/

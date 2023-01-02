@@ -26,6 +26,7 @@ def preprocessing(image_path):
     Nothing
     Saves the preprocessed image in the "./imgs/" (+ mode) directory.
     """
+    size = 124  # Image size, always a square
     mode = "gs_he"
     outdir = f"./imgs/{mode}"
     image_name = os.path.basename(image_path)
@@ -48,7 +49,7 @@ def preprocessing(image_path):
         new_image.paste(image, ((height - width) // 2, 0))
         image = new_image
 
-    image = image.resize((224, 224), resample=Image.Resampling.BICUBIC)
+    image = image.resize((size, size), resample=Image.Resampling.BICUBIC)
     if mode == "gs" or mode == "gs_he":
         image = image.convert(mode="L")
 
@@ -67,4 +68,4 @@ if __name__ == "__main__":
     with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as executor:
         executor.map(preprocessing, image_paths)
 
-    print("... Done")
+    print("Done")
