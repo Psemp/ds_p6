@@ -1,6 +1,8 @@
 # <u>Classification of products based on their description and pictures</u>
 
-###**Project's requirements :**
+
+###Project's requirements :
+
 
 [Direct link to OpenClassrooms project](https://openclassrooms.com/fr/paths/164/projects/631/assignment)
 
