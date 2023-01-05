@@ -12,7 +12,7 @@ image_paths = glob.glob(pathname=f"{image_dir}/*")
 
 def preprocessing(image_path):
     """
-    Preprocesses the image at the given path by transforming it into a square image and resizing it to 128x128.
+    Preprocesses the image at the given path by transforming it into a square image and resizing it to size x size (var)
     Applies a Gaussian filter to remove potential noise. Adjust the filter via radius parameter (line 55)
 
     Args:
@@ -26,7 +26,7 @@ def preprocessing(image_path):
     Nothing
     Saves the preprocessed image in the "./imgs/" (+ mode) directory.
     """
-    size = 124  # Image size, always a square
+    size = 128  # Image size, always a square
     mode = "gs_he"
     outdir = f"./imgs/{mode}"
     image_name = os.path.basename(image_path)
