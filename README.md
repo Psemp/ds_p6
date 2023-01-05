@@ -25,7 +25,7 @@
 
 *Annexes :*
 
-- `image_preprocessing_mp.py` : used to square, fill empty pixels with black, correct histograms and contrast, convert to black (SIFT), resize (124 for SIFT, 224 for VGG16). Done using `concurrent.futures` to keep treatment time low.
+- `image_preprocessing_mp.py` : used to square, fill empty pixels with black, correct histograms and contrast, convert to black (SIFT), resize (128 for SIFT, 224 for VGG16). Done using `concurrent.futures` to keep treatment time low.
 - `nb_anx_0_gensim_downloader` : Downloads the two embedding models and checks for correct saving
 - `nb_anx_1_tf_export` : Specific export of the dataset as a csv (problems with pickle format on Kaggle)
 - `nb_anx_2_images_to_h5` : Loads the dataset, splits it into train/test with balanced classes, then proceeds to load and write the images and their classes into a h5 file more suited to NN tasks.
